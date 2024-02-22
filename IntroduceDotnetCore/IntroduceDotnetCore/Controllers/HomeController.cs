@@ -44,5 +44,10 @@ namespace IntroduceDotnetCore.Controllers
             }
             return View();
         }
+
+        public IActionResult Panel()
+        {
+            return View();
+        }
     }
 }
