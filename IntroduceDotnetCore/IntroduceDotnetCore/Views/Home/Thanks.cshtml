@@ -1,0 +1,12 @@
+﻿@model UserResponse
+
+@if (Model.IsComing.HasValue && Model.IsComing.Value)
+{
+    <p>Harika! Görüşürüz @Model.Name</p>
+}
+else
+{
+    <p>Üzgünüz! Bir saha ki sefere görüşürüz @Model.Name</p>
+
+}
+

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Company>
+
+<p>Home/Index sayfası... </p>
+<p>Selam sana @ViewBag.Name</p>
+@if (ViewBag.IsCancel)
+{
+    <p>İptal oldu </p>
+}
+else
+{
+    <p>Onaylandı! </p>
+
+}
+<h4>Otellerimiz</h4>
+<ul>
+    @foreach (var company in Model)
+    {
+        <li>@company.Name - @company.Address</li>
+    }
+</ul>
+
+    Davet için <a asp-action="Response">tıkla</a>
+
