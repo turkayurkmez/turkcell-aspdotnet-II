@@ -9,15 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{31
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{1AF86BFA-AD13-41C2-987E-01EFB8EFADD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pasaj.mvc", "pasaj.mvc\pasaj.mvc.csproj", "{4219BE87-A169-4EFD-9927-7BCE7FAB9B5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pasaj.mvc", "pasaj.mvc\pasaj.mvc.csproj", "{4219BE87-A169-4EFD-9927-7BCE7FAB9B5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pasaj.Service", "pasaj.Service\pasaj.Service.csproj", "{EDF6B016-4259-4ACA-91D5-1AEBD856EF64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pasaj.Service", "pasaj.Service\pasaj.Service.csproj", "{EDF6B016-4259-4ACA-91D5-1AEBD856EF64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pasaj.DataAccess", "pasaj.DataAccess\pasaj.DataAccess.csproj", "{35CB19F0-C686-4BCF-9E34-8359A66A6B12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pasaj.DataAccess", "pasaj.DataAccess\pasaj.DataAccess.csproj", "{35CB19F0-C686-4BCF-9E34-8359A66A6B12}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{61EACD81-AFD5-40CB-B6E5-3BC07B2E2EFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pasaj.Entities", "pasaj.Entities\pasaj.Entities.csproj", "{9239D4A4-042A-41FD-AFFE-38359A5701B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pasaj.Entities", "pasaj.Entities\pasaj.Entities.csproj", "{9239D4A4-042A-41FD-AFFE-38359A5701B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pasaj.Service.DataTransferObjects", "pasaj.Service.DataTransferObjects\pasaj.Service.DataTransferObjects.csproj", "{3660121C-4F8A-46CD-B388-CEDCAE5C8455}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{9239D4A4-042A-41FD-AFFE-38359A5701B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9239D4A4-042A-41FD-AFFE-38359A5701B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9239D4A4-042A-41FD-AFFE-38359A5701B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3660121C-4F8A-46CD-B388-CEDCAE5C8455}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3660121C-4F8A-46CD-B388-CEDCAE5C8455}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3660121C-4F8A-46CD-B388-CEDCAE5C8455}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3660121C-4F8A-46CD-B388-CEDCAE5C8455}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{EDF6B016-4259-4ACA-91D5-1AEBD856EF64} = {311925B0-6DE5-4DB8-B85B-482490F514F9}
 		{35CB19F0-C686-4BCF-9E34-8359A66A6B12} = {1AF86BFA-AD13-41C2-987E-01EFB8EFADD4}
 		{9239D4A4-042A-41FD-AFFE-38359A5701B4} = {61EACD81-AFD5-40CB-B6E5-3BC07B2E2EFB}
+		{3660121C-4F8A-46CD-B388-CEDCAE5C8455} = {311925B0-6DE5-4DB8-B85B-482490F514F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0DC3EAD3-8C3A-4258-8355-E28160FF5CAF}

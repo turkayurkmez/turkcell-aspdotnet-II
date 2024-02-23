@@ -1,7 +1,16 @@
+using pasaj.DataAccess.Repositories;
+using pasaj.Service;
+using pasaj.Service.MappingProfile;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductRepository, FakeProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, FakeCategoryRepository>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var app = builder.Build();
 
@@ -19,6 +28,13 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+
+app.MapControllerRoute(
+    name: "paging",
+    pattern: "Page{page}",
+    defaults: new { controller = "Home", action = "Index", page = 1 });
+
 
 app.MapControllerRoute(
     name: "default",
