@@ -7,7 +7,6 @@ namespace pasaj.Service
     {
         List<Product> GetProducts();
         IEnumerable<ProductCardResponse> GetProductsSummary(int? categoryId = null);
-
         ProductForAddToCard GetProductForAddToCard(int id);
 
     }

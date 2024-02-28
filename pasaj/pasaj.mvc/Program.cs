@@ -1,4 +1,4 @@
-using pasaj.DataAccess.Repositories;
+﻿using pasaj.DataAccess.Repositories;
 using pasaj.Service;
 using pasaj.Service.MappingProfile;
 
@@ -12,6 +12,19 @@ builder.Services.AddScoped<ICategoryRepository, FakeCategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
+/*
+ *  1. Singleton: Tekil nesne, sadece bir kez constructor çalışsın (bir kere instance alınsın) ve uygulama çalıştığı sürece dispose olmasın.
+ *  
+ *  2. Transient: Her seferinde (ihtiyaç) yeni bir instance istiyorsanız transient kullanılır.
+ *  3. Scoped: Her httpRequest'de yeni bir instance al ama bu instance'i ihtiyaç duyulan her yerde kullan.
+ *  
+ */
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
+
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,8 +37,9 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

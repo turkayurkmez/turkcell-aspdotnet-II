@@ -28,6 +28,7 @@ namespace pasaj.mvc.Controllers
             int pageSize = 2;
             int total = products.Count();
             int totalPages = (int)Math.Ceiling((decimal)total / pageSize);
+
             ViewBag.Pages = totalPages;
             ViewBag.Current = page;
 

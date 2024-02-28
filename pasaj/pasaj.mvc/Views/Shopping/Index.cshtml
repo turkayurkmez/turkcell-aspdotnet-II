@@ -1,0 +1,20 @@
+﻿@model ShoppingCard
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<table class="table table-borderless">
+    @foreach (var product in Model.Items)
+    {
+        <tr>
+            <td>@product.Product.Name</td>
+            <td>@product.Product.Price</td>
+            <td>@product.Quantity</td>
+
+        </tr>
+    }
+    <tr>
+        <td colspan="3">@Model.TotalPrice TL</td>
+    </tr>
+</table>
