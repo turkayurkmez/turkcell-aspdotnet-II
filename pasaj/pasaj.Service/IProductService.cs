@@ -20,6 +20,7 @@ namespace pasaj.Service
         Task DeleteAsync(int id);
         Task<bool> IsExistsAsync(int id);
 
+        IEnumerable<ProductCardResponse> SearchByName(string name);
 
     }
 }

@@ -1,0 +1,6 @@
+@pasaj.API_HostAddress = http://localhost:5009
+
+GET {{pasaj.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

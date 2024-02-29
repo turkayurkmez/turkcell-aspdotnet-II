@@ -108,6 +108,12 @@ namespace pasaj.Service
             return await productRepository.IsExists(id);
         }
 
+        public IEnumerable<ProductCardResponse> SearchByName(string name)
+        {
+            var products = productRepository.Search(name);
+            return mapper.Map<IEnumerable<ProductCardResponse>>(products);
+        }
+
         public async Task UpdateAsync(UpdateProductRequest productRequest)
         {
             var product = mapper.Map<Product>(productRequest);

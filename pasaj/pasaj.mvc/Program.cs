@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using pasaj.DataAccess.Data;
 using pasaj.DataAccess.Repositories;
+using pasaj.Extensions;
 using pasaj.mvc.Extensions;
 using pasaj.Service;
 using pasaj.Service.MappingProfile;
@@ -10,12 +11,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductRepository, EFProductRepository>();
-builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddAutoMapper(typeof(MapProfile));
+//builder.Services.AddScoped<IProductService, ProductService>();
+//builder.Services.AddScoped<IProductRepository, EFProductRepository>();
+//builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
+//builder.Services.AddScoped<ICategoryService, CategoryService>();
+//builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddAutoMapper(typeof(MapProfile));
+var connectionString = builder.Configuration.GetConnectionString("db");
+//builder.Services.AddDbContext<PasajDataContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddNecessaryIoC(connectionString);
 
 /*
  *  1. Singleton: Tekil nesne, sadece bir kez constructor çalışsın (bir kere instance alınsın) ve uygulama çalıştığı sürece dispose olmasın.
@@ -24,10 +29,10 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
  *  3. Scoped: Her httpRequest'de yeni bir instance al ama bu instance'i ihtiyaç duyulan her yerde kullan.
  *  
  */
-var connectionString = builder.Configuration.GetConnectionString("db");
+
 var rabbitMqEndPoint = builder.Configuration.GetRabbitMQ("endpoint");
 
-builder.Services.AddDbContext<PasajDataContext>(options => options.UseSqlServer(connectionString));
+
 
 builder.Services.AddSession(options =>
 {
