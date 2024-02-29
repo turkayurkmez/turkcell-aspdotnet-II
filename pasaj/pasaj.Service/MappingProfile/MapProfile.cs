@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using pasaj.Entities;
+using pasaj.Service.DataTransferObjects.Requests;
 using pasaj.Service.DataTransferObjects.Responses;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace pasaj.Service.MappingProfile
         {
             CreateMap<Product, ProductCardResponse>();
             CreateMap<Product, ProductForAddToCard>();
+            CreateMap<CreateProductRequest, Product>();
+            CreateMap<UpdateProductRequest, Product>().ReverseMap();
         }
     }
 }

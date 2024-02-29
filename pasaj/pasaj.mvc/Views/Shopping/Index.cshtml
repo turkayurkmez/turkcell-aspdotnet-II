@@ -4,17 +4,17 @@
 }
 
 <h1>Index</h1>
-<table class="table table-borderless">
+<table class="table table-striped table-hover">
     @foreach (var product in Model.Items)
     {
         <tr>
             <td>@product.Product.Name</td>
-            <td>@product.Product.Price</td>
+            <td>@product.Product.Price.ToString("N2")</td>
             <td>@product.Quantity</td>
 
         </tr>
     }
     <tr>
-        <td colspan="3">@Model.TotalPrice TL</td>
+        <td colspan="3">Toplam fiyat @Model.TotalPrice.ToString("N2") TL</td>
     </tr>
 </table>

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using pasaj.DataAccess.Repositories;
 using pasaj.Entities;
+using pasaj.Service.DataTransferObjects.Requests;
 using pasaj.Service.DataTransferObjects.Responses;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,18 @@ namespace pasaj.Service
             this.mapper = mapper;
         }
 
+        public async Task CreateAsync(CreateProductRequest productRequest)
+        {
+            var product = mapper.Map<Product>(productRequest);
+            await productRepository.Create(product);
+
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            await productRepository.Delete(id);
+        }
+
         public ProductForAddToCard GetProductForAddToCard(int id)
         {
             var product = productRepository.Get(id);
@@ -37,11 +50,23 @@ namespace pasaj.Service
             return mapper.Map<ProductForAddToCard>(product);
         }
 
+        public async Task<ProductForAddToCard> GetProductForAddToCardAsync(int id)
+        {
+            var product = await productRepository.GetAsync(id);
+            return mapper.Map<ProductForAddToCard>(product);
+
+        }
+
         public List<Product> GetProducts()
         {
 
             var products = productRepository.GetAll();
             return products.ToList();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsAsync()
+        {
+            return await productRepository.GetAllAsync();
         }
 
         public IEnumerable<ProductCardResponse> GetProductsSummary(int? categoryId = null)
@@ -62,6 +87,25 @@ namespace pasaj.Service
             var responses = mapper.Map<IEnumerable<ProductCardResponse>>(products);
             return responses;
 
+        }
+
+        public async Task<IEnumerable<ProductCardResponse>> GetProductSummaryAsync(int? categoryId = null)
+        {
+            var products = categoryId == null ? await productRepository.GetAllAsync() :
+                                                await productRepository.GetProductsByCategoryAsync(categoryId.Value);
+
+            return mapper.Map<IEnumerable<ProductCardResponse>>(products);
+        }
+
+        public async Task<bool> IsExistsAsync(int id)
+        {
+            return await productRepository.IsExists(id);
+        }
+
+        public async Task UpdateAsync(UpdateProductRequest productRequest)
+        {
+            var product = mapper.Map<Product>(productRequest);
+            await productRepository.Update(product);
         }
     }
 }

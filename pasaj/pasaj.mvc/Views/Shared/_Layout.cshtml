@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using pasaj.mvc.Extensions
+@using pasaj.mvc.Models
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,7 +25,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy(@(ViewContext.HttpContext.Session.GetJson<ShoppingCard>("basket")?.TotalQuantity))</a>
+                        </li>
+                        <li class="nav-item">
+                           @await Component.InvokeAsync("BasketLink")
                         </li>
                     </ul>
                 </div>

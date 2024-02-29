@@ -11,5 +11,7 @@ namespace pasaj.DataAccess.Repositories
     {
         IEnumerable<Product> Search(string name);
         IEnumerable<Product> GetProductsByCategory(int categoryId);
+
+        Task<IEnumerable<Product>> GetProductsByCategoryAsync(int categoryId);
     }
 }

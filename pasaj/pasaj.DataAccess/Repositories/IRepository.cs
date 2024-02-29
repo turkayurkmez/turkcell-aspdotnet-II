@@ -12,5 +12,13 @@ namespace pasaj.DataAccess.Repositories
         IEnumerable<T> GetAll();
         T Get(int id);
 
+        Task<T> GetAsync(int id);
+        Task<IEnumerable<T>> GetAllAsync();
+
+        Task Create(T entity);
+        Task Update(T entity);
+        Task Delete(int id);
+
+        Task<bool> IsExists(int id);
     }
 }

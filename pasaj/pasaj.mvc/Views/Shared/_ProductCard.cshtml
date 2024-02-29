@@ -4,7 +4,7 @@
     <div class="card-body">
         <p class="card-text">@Model.Name</p>
         <p class="card-text">@Model.Description</p>
-        <p class="card-text">@Model.Price yerine @(Model.Price * (1 - Model.DiscountRate))</p>
+        <p class="card-text">@Model.Price.ToString("N2") yerine @((Model.Price * (1 - Model.DiscountRate)).ToString("N2"))</p>
         <button class="btn btn-success btnAdd" data-id="@Model.Id">Sepete Ekle</button>
     </div>
 </div>
