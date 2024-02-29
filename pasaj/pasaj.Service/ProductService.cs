@@ -57,6 +57,12 @@ namespace pasaj.Service
 
         }
 
+        public async Task<UpdateProductRequest> GetProductForUpdateRequest(int id)
+        {
+            var product = await productRepository.GetAsync(id);
+            return mapper.Map<UpdateProductRequest>(product);
+        }
+
         public List<Product> GetProducts()
         {
 

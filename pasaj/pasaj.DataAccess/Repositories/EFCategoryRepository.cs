@@ -17,6 +17,16 @@ namespace pasaj.DataAccess.Repositories
             this.pasajDataContext = pasajDataContext;
         }
 
+        public Task Create(Category entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Category Get(int id)
         {
             return pasajDataContext.Categories.SingleOrDefault(p => p.Id == id);
@@ -25,6 +35,26 @@ namespace pasaj.DataAccess.Repositories
         public IEnumerable<Category> GetAll()
         {
             return pasajDataContext.Categories.AsEnumerable();
+        }
+
+        public Task<IEnumerable<Category>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Category> GetAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> IsExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(Category entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

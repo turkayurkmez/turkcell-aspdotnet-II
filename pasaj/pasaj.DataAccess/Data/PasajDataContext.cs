@@ -30,7 +30,7 @@ namespace pasaj.DataAccess.Data
                                           .HasMaxLength(120);
 
             modelBuilder.Entity<Product>().Property(p => p.Price)
-                                          .HasPrecision(4, 2);
+                                          .HasPrecision(7, 2);
 
             modelBuilder.Entity<Product>().HasOne(p => p.Category)
                                           .WithMany(c => c.Products)

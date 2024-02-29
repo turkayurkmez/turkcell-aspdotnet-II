@@ -13,6 +13,8 @@ namespace pasaj.Service
         Task<IEnumerable<Product>> GetProductsAsync();
         Task<IEnumerable<ProductCardResponse>> GetProductSummaryAsync(int? categoryId = null);
         Task<ProductForAddToCard> GetProductForAddToCardAsync(int id);
+
+        Task<UpdateProductRequest> GetProductForUpdateRequest(int id);
         Task CreateAsync(CreateProductRequest productRequest);
         Task UpdateAsync(UpdateProductRequest productRequest);
         Task DeleteAsync(int id);

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using pasaj.DataAccess.Data;
 using pasaj.DataAccess.Repositories;
 using pasaj.mvc.Extensions;
@@ -13,6 +14,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, EFProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, EFCategoryRepository>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 /*
@@ -32,6 +34,17 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(20);
 
 });
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(option =>
+                {
+                    option.LoginPath = "/UserAccount/Login";
+                    option.ReturnUrlParameter = "gidilecekUrl";
+                    option.AccessDeniedPath = "/UserAccount/AccessDenied";
+
+                });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
