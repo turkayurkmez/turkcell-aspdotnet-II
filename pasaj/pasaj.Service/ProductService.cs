@@ -22,11 +22,11 @@ namespace pasaj.Service
             this.mapper = mapper;
         }
 
-        public async Task CreateAsync(CreateProductRequest productRequest)
+        public async Task<int> CreateAsync(CreateProductRequest productRequest)
         {
             var product = mapper.Map<Product>(productRequest);
             await productRepository.Create(product);
-
+            return product.Id;
         }
 
         public async Task DeleteAsync(int id)

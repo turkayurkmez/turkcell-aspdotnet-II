@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using pasaj.Service;
+using pasaj.Service.DataTransferObjects.Requests;
 
 namespace pasaj.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -36,11 +38,30 @@ namespace pasaj.API.Controllers
             }
             return Ok(product);
         }
-        [HttpGet("{name}")]
+        [HttpGet("[action]/{name}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Search(string name)
         {
             return Ok(_productService.SearchByName(name));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateProductRequest createProductRequest)
+        {
+            if (ModelState.IsValid)
+            {
+                var lastId = await _productService.CreateAsync(createProductRequest);
+                return CreatedAtAction(nameof(GetProduct), routeValues: new { id = lastId }, null);
+            }
+            return BadRequest(ModelState);
+        }
+
+        /* idempotent */
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, UpdateProductRequest updateProductRequest)
+        {
+            return Ok();
+        }
+
     }
 }

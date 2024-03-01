@@ -15,7 +15,7 @@ namespace pasaj.Service
         Task<ProductForAddToCard> GetProductForAddToCardAsync(int id);
 
         Task<UpdateProductRequest> GetProductForUpdateRequest(int id);
-        Task CreateAsync(CreateProductRequest productRequest);
+        Task<int> CreateAsync(CreateProductRequest productRequest);
         Task UpdateAsync(UpdateProductRequest productRequest);
         Task DeleteAsync(int id);
         Task<bool> IsExistsAsync(int id);
