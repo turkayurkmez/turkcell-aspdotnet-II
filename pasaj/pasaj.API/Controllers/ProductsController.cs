@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using pasaj.API.Filters;
 using pasaj.Service;
 using pasaj.Service.DataTransferObjects.Requests;
 
@@ -45,7 +47,11 @@ namespace pasaj.API.Controllers
             return Ok(_productService.SearchByName(name));
         }
 
+        [Authorize(Roles = "Admin,Editor")]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
         public async Task<IActionResult> Create(CreateProductRequest createProductRequest)
         {
             if (ModelState.IsValid)
@@ -58,9 +64,58 @@ namespace pasaj.API.Controllers
 
         /* idempotent */
         [HttpPut("{id}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [IsExists]
         public async Task<IActionResult> Update(int id, UpdateProductRequest updateProductRequest)
         {
+
+            if (ModelState.IsValid)
+            {
+                await _productService.UpdateAsync(updateProductRequest);
+                return Ok(updateProductRequest);
+            }
+            return BadRequest();
+
+        }
+        [Authorize]
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [IsExists]
+        public async Task<IActionResult> Delete(int id)
+        {
+            //if (await _productService.IsExistsAsync(id))
+            //{
+            await _productService.DeleteAsync(id);
+            return Ok(new { message = "Kayıt silindi" });
+            //}
+
+            //            return NotFound();
+
+        }
+
+        [HttpGet("[action]")]
+        [IsExists]
+        public IActionResult Sample()
+        {
             return Ok();
+        }
+
+        [HttpGet("[action]")]
+        [NotImpelemented]
+        public IActionResult AnAction()
+        {
+            throw new NotImplementedException();
+        }
+        [HttpGet("[action]")]
+        [NotImpelemented]
+
+        public IActionResult AnAnotherAction()
+        {
+            throw new NotImplementedException();
         }
 
     }
